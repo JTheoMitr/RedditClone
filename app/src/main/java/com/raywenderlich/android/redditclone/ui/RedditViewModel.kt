@@ -44,10 +44,10 @@ import com.raywenderlich.android.redditclone.repositories.RedditRepo
 import kotlinx.coroutines.flow.Flow
 
 class RedditViewModel(application: Application) : AndroidViewModel(application) {
-    // 1
+    // 1 create an instance of RedditRepo, used cto fetch data from the API
     private val redditRepo = RedditRepo(application)
 
-    // 2
+    // 2 calling fetchPosts, created in RedditRepo.  cache the data in a scope (viewmodelscope)
     fun fetchPosts(): Flow<PagingData<RedditPost>> {
         return redditRepo.fetchPosts().cachedIn(viewModelScope)
     }

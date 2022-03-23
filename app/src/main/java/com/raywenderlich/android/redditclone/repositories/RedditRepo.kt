@@ -45,12 +45,12 @@ import kotlinx.coroutines.flow.Flow
 
 class RedditRepo(context: Context) {
 
-    // 1
+    // 1 create reference to Reddit Service to download posts from RedditAPI
     private val redditService = RedditClient.getClient().create(RedditService::class.java)
 
-    // 2
+    // 2 Return an instance of Pager class, used to fetch a stream of data from PagingSource
     fun fetchPosts(): Flow<PagingData<RedditPost>> {
-        // 3
+        // 3 PagingConfig defines how PagingSource should load the data.  Second param returns a PagingSource
         return Pager(
             PagingConfig(pageSize = 40, enablePlaceholders = false)
         ) {
